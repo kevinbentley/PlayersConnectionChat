@@ -35,31 +35,39 @@
 
 #pragma codeseg PC_MAIN
 
-void main(void) {
+void main(void)
+{
   randomize();
   int iReturn = 0;
   int iErrCode = 0;
   textmode(C4350);
   clrscr();
   TApp *App;
-  App = new TApp; assert(App != NULL);
+  App = new TApp;
+  assert(App != NULL);
   iErrCode = App->Startup();
-  if(iErrCode >= 0) {
-    while(iReturn == 0) iReturn = App->Run();
+  if (iErrCode >= 0)
+  {
+    while (iReturn == 0)
+      iReturn = App->Run();
     App->Shutdown();
-    }
+  }
   delete App;
   textmode(C80);
   clrscr();
   printf("PC %s - The Players Connection\n", cVersion);
-  if(random(100) < 50) printf(cCopyright1);
-    else printf(cCopyright2);
+  if (random(100) < 50)
+    printf(cCopyright1);
+  else
+    printf(cCopyright2);
   printf("\nThis is pre-release software, so don't expect much support.\n");
-  if(iErrCode == -1) printf("\nCould not find PC.CFG!\a\n");
-  if(iErrCode == -2) printf("\nCould not initialize IPX!\a\n");
-  if(iReturn < 0) iReturn = 0;
-  if(iReturn > 0) printf("\nExiting with errorlevel %d.\n", iReturn);
+  if (iErrCode == -1)
+    printf("\nCould not find PC.CFG!\a\n");
+  if (iErrCode == -2)
+    printf("\nCould not initialize IPX!\a\n");
+  if (iReturn < 0)
+    iReturn = 0;
+  if (iReturn > 0)
+    printf("\nExiting with errorlevel %d.\n", iReturn);
   exit(iReturn);
-  }
-
-
+}

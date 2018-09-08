@@ -5,54 +5,64 @@
 //#define cHeadingColor        LIGHTGREEN
 //#define cDataColor           YELLOW
 
-class TD2Game {
+class TD2Game
+{
   void RefreshData(void);
   void RefreshList(void);
   void RefreshGame(void);
-  public:
-    TD2Game(void);
-    ~TD2Game(void);
-    void Startup(void);
-    void Run(void);
-    void SetSocket(int iSocket);
-    void DrawList(void);
-    void DrawGame(void);
-  private:
-    Tdpack *DPack;
-    struct time UpdateTime;
-    int iTimer;
-    int iUpdate;
-    int iCurrentView;
-    int iCurrentSocket;
-  };
 
-TD2Game::TD2Game(void) {
+public:
+  TD2Game(void);
+  ~TD2Game(void);
+  void Startup(void);
+  void Run(void);
+  void SetSocket(int iSocket);
+  void DrawList(void);
+  void DrawGame(void);
+
+private:
+  Tdpack *DPack;
+  struct time UpdateTime;
+  int iTimer;
+  int iUpdate;
+  int iCurrentView;
+  int iCurrentSocket;
+};
+
+TD2Game::TD2Game(void)
+{
   iTimer = 0;
   iUpdate = 5;
-  }
+}
 
-TD2Game::~TD2Game(void) {
-//  delete(DPack);
-  }
+TD2Game::~TD2Game(void)
+{
+  //  delete(DPack);
+}
 
-void TD2Game::Startup(void) {
-//  DPack = new Tdpack;
-//  DPack->Start(0);
-  }
+void TD2Game::Startup(void)
+{
+  //  DPack = new Tdpack;
+  //  DPack->Start(0);
+}
 
-void TD2Game::Run(void) {
-//  DPack->EnterIdle();
+void TD2Game::Run(void)
+{
+  //  DPack->EnterIdle();
   gettime(&UpdateTime);
-  if(iTimer != UpdateTime.ti_sec) iUpdate++;
+  if (iTimer != UpdateTime.ti_sec)
+    iUpdate++;
   iTimer = UpdateTime.ti_sec;
-//  if(iUpdate >= cUpdateInterval) RefreshData();
-  }
+  //  if(iUpdate >= cUpdateInterval) RefreshData();
+}
 
-void TD2Game::SetSocket(int iSocket) {
+void TD2Game::SetSocket(int iSocket)
+{
   iCurrentSocket = iSocket;
-  }
+}
 
-void TD2Game::DrawList(void) {
+void TD2Game::DrawList(void)
+{
 /*  int wx = wherex();
   int wy = wherey();
   NewScreen();
@@ -81,7 +91,8 @@ void TD2Game::DrawList(void) {
   gotoxy(wx, wy);
 */  }
 
-void TD2Game::RefreshList(void) {
+void TD2Game::RefreshList(void)
+{
 /*  PutString(76, 2, "    ", cDataColor);
   window(4, 6, 79, 9);
   clrscr();
@@ -94,20 +105,23 @@ void TD2Game::RefreshList(void) {
   PutString(76, 2, sTemp, cDataColor);
 */  }
 
-void TD2Game::DrawGame(void) {
+void TD2Game::DrawGame(void)
+{
   iCurrentView = 2;
-  }
+}
 
-void TD2Game::RefreshGame(void) {
-  }
+void TD2Game::RefreshGame(void)
+{
+}
 
-void TD2Game::RefreshData(void) {
+void TD2Game::RefreshData(void)
+{
   iUpdate = 0;
   int wx = wherex();
   int wy = wherey();
-  if(iCurrentView == 1) RefreshList();
+  if (iCurrentView == 1)
+    RefreshList();
   //asdf
   gotoxy(wx, wy);
   DPack->Refresh();
-  }
-
+}

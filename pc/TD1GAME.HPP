@@ -1,57 +1,67 @@
 //PC TD1Game
 //Copyright 1996 Aaron Brinton
 
-#define cListItems           4
+#define cListItems 4
 //#define cScreenNameColor     WHITE
 //#define cHeadingColor        LIGHTGREEN
 //#define cDataColor           YELLOW
 
-class TD1Game {
+class TD1Game
+{
   void RefreshData(void);
   void RefreshList(void);
   void RefreshGame(void);
-  public:
-    TD1Game(void);
-    ~TD1Game(void);
-    void Startup(void);
-    void Run(void);
-    void SetSocket(int iSocket);
-    void DrawList(void);
-    void DrawGame(void);
-  private:
-    Tdpack *DPack;
-    int iCurrentView;
-    int iCurrentSocket;
-    netgame_info GameInfo[8];
-  };
 
-TD1Game::TD1Game(void) {
-  }
+public:
+  TD1Game(void);
+  ~TD1Game(void);
+  void Startup(void);
+  void Run(void);
+  void SetSocket(int iSocket);
+  void DrawList(void);
+  void DrawGame(void);
 
-TD1Game::~TD1Game(void) {
-  delete(DPack);
-  }
+private:
+  Tdpack *DPack;
+  int iCurrentView;
+  int iCurrentSocket;
+  netgame_info GameInfo[8];
+};
 
-void TD1Game::Startup(void) {
-  DPack = new Tdpack; assert(DPack != NULL);
+TD1Game::TD1Game(void)
+{
+}
+
+TD1Game::~TD1Game(void)
+{
+  delete (DPack);
+}
+
+void TD1Game::Startup(void)
+{
+  DPack = new Tdpack;
+  assert(DPack != NULL);
   iCurrentSocket = 0;
   DPack->Start(0);
-  for(int i = 0; i < cListItems; i++)
+  for (int i = 0; i < cListItems; i++)
     strcpy(GameInfo[i].game_name, "");
-  }
+}
 
-void TD1Game::Run(void) {
+void TD1Game::Run(void)
+{
   DPack->EnterIdle();
   RefreshData();
-  }
+}
 
-void TD1Game::SetSocket(int iSocket) {
+void TD1Game::SetSocket(int iSocket)
+{
   iCurrentSocket = iSocket;
   DPack->Close();
   DPack->Start(iCurrentSocket);
-  }
+}
 
-void TD1Game::DrawList(void) {
+void TD1Game::DrawList(void)
+{
 /*  int wx = wherex();
   int wy = wherey();
   NewScreen();
@@ -79,7 +89,8 @@ void TD1Game::DrawList(void) {
   gotoxy(wx, wy);
 */  }
 
-void TD1Game::RefreshList(void) {
+void TD1Game::RefreshList(void)
+{
 /*  PutString(76, 2, "    ", cDataColor);
   window(4, 6, 79, 9);
   clrscr();
@@ -135,27 +146,35 @@ void TD1Game::RefreshList(void) {
     }
 */  }
 
-void TD1Game::DrawGame(void) {
+void TD1Game::DrawGame(void)
+{
   iCurrentView = 2;
-  }
+}
 
-void TD1Game::RefreshGame(void) {
-  }
+void TD1Game::RefreshGame(void)
+{
+}
 
-void TD1Game::RefreshData(void) {
+void TD1Game::RefreshData(void)
+{
   int wx = wherex();
   int wy = wherey();
   netgame_info *lpGameInfo[cListItems];
-  for(int i = 0; i < cListItems; i++) {
+  for (int i = 0; i < cListItems; i++)
+  {
     GameInfo[i].type = 0;
-    if(DPack->GetCompletionStatus(i)) {
+    if (DPack->GetCompletionStatus(i))
+    {
       lpGameInfo[i] = DPack->GetGameInfo(i);
       memcpy(&GameInfo[i], lpGameInfo[i], sizeof(netgame_info));
-      } else lpGameInfo[i] = NULL;
     }
-  if(iCurrentView == 1) RefreshList();
-  if(iCurrentView == 2) RefreshGame();
+    else
+      lpGameInfo[i] = NULL;
+  }
+  if (iCurrentView == 1)
+    RefreshList();
+  if (iCurrentView == 2)
+    RefreshGame();
   gotoxy(wx, wy);
   DPack->Refresh();
-  }
-
+}
