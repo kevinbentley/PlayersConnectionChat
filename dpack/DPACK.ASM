@@ -1,0 +1,28 @@
+
+SPXESR_TEXT SEGMENT  WORD PUBLIC 'CODE'
+SPXESR_TEXT	ENDS
+_DATA	SEGMENT  WORD PUBLIC 'DATA'
+_DATA	ENDS
+CONST	SEGMENT  WORD PUBLIC 'CONST'
+CONST	ENDS
+_BSS	SEGMENT  WORD PUBLIC 'BSS'
+_BSS	ENDS
+DGROUP	GROUP	CONST, _BSS, _DATA
+ASSUME DS: DGROUP, SS: DGROUP
+
+EXTRN   _EventServiceRoutine:FAR
+
+SPXESR_TEXT SEGMENT
+		  ASSUME CS: SPXESR_TEXT
+
+		  PUBLIC  _ESRHandler
+
+_ESRHandler PROC far
+		  mov     ax, DGROUP
+		  mov     ds, ax
+		  push    es
+		  push    si
+		  call    far ptr _EventServiceRoutine
+		  retf_ESRHandler ENDP
+SPXESR_TEXT ENDS
+		  end
