@@ -1,4 +1,4 @@
-#include "..\..\clib\ipx.hpp"
+#include "..\clib\ipx.hpp"
 
 #include "..\dpack\dstructs.hpp"
 

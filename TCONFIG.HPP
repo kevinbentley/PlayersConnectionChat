@@ -9,7 +9,7 @@
 #define cMaxStringLength 60
 #define cMaxColors 30
 
-#include "..\clib\tcfgfile.hpp"
+#include "clib\tcfgfile.hpp"
 
 class TConfig
 {

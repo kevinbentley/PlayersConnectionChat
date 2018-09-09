@@ -6,7 +6,7 @@
 
 #include <time.h>
 #include "..\dchat\kchat.h"
-#include "...\clib\tcrc.hpp"
+#include ".clib\tcrc.hpp"
 
 #define BREAKPOINT asm int 3;
 

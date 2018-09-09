@@ -8,9 +8,9 @@
 
 #include "dpack\dpackapi.hpp"
 #include "dchat\dchat.hpp"
-#include "..\clib\tcmdline.hpp"
-#include "..\clib\toutwin.hpp"
-#include "..\clib\tlistwin.hpp"
+#include "clib\tcmdline.hpp"
+#include "clib\toutwin.hpp"
+#include "clib\tlistwin.hpp"
 #include "tconfig.hpp"
 #include "tscreen.hpp"
 

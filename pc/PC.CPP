@@ -21,11 +21,11 @@
 #pragma codeseg PC_DCHAT
 #include "..\dchat\dchat.hpp"
 #pragma codeseg PC_TCMDLINE
-#include "..\..\clib\tcmdline.hpp"
+#include "..\clib\tcmdline.hpp"
 #pragma codeseg PC_TOUTWIN
-#include "..\..\clib\toutwin.hpp"
+#include "..\clib\toutwin.hpp"
 #pragma codeseg PC_TLISTWIN
-#include "..\..\clib\tlistwin.hpp"
+#include "..\clib\tlistwin.hpp"
 #pragma codeseg PC_TCONFIG
 #include "tconfig.hpp"
 #pragma codeseg PC_TSCREEN
