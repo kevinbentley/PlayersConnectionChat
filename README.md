@@ -34,7 +34,7 @@ due to the fear of adding huge amounts of lag to the games in
 Kali, we disabled it. At any rate, we had a good user interface,
 functional chat, and a bunch of bugs. In fact most of the bugs
 were mine, due to my attempt to code while I figured out the 
-kchat protocol. Then I hooked up with Norman Bright, and got 
+kchat protocol. Then we got 
 involved in Kahn. So I re-wrote gmon using Aaron's original
 user interface. It was a lot more stable, but in part due to 
 the simple design of the original chat system, messages had
